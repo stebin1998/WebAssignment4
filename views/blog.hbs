@@ -1,0 +1,50 @@
+<div class="row">
+    <section class="main col-md-9">
+        <article>
+            <h2>{{data.post.title}}</h2>
+            <img src="{{data.post.featureImage}}" alt="Feature Image">
+
+            <br /><br />
+            {{#safeHTML data.post.body}}{{/safeHTML}}
+            <br /><br />
+            <p>Category: {{data.post.category}}</p>
+            <p>Last Updated: {{data.post.postDate}}</p>
+        </article>
+    </section>
+    <aside class="col-md-3">
+        <br /><br />
+        {{#if data.posts}}
+<h4>Posts</h4>
+<ul>
+   {{#each data.posts}}
+   <li><a href="/blog/{{this.id}}?category={{../viewingCategory}}">{{this.title}}</a></li>
+   {{/each}}
+</ul>
+{{else}}
+<p>No posts found.</p>
+{{/if}}
+
+{{#if data.categories}}
+<h4>Categories</h4>
+<ul>
+   {{#each data.categories}}
+   <li><a href="/blog?category={{this.id}}">{{this.category}}</a></li>
+   {{/each}}
+   </ul>
+   {{else}}
+   <p>No categories found.</p>
+   {{/if}}
+</ul>
+{{#if data.post}}
+<article>
+   <!-- Post content here, as structured above -->
+</article>
+{{else}}
+<div class="col-md-12 text-center">
+   <h2>{{data.message}}</h2>
+   <p>Please try another Post / Category</p>
+</div>
+{{/if}}
+
+    </aside>
+</div>
